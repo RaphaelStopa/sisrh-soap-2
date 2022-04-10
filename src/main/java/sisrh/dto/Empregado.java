@@ -1,17 +1,26 @@
 package sisrh.dto;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+//http://localhost:8080/sisrh/rest/swagger.json
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Empregado {
 
+	@XmlElement(name = "matricula")
 	private String matricula;
 
+	@XmlElement(name = "nome")
 	private String nome;
 
+	@XmlElement(name = "admissao")
 	private Date admissao;
 
+	@XmlElement(name = "desligamento")
 	private Date desligamento;
 
+	@XmlElement(name = "salario")
 	private Double salario;
 
 	public Empregado() {

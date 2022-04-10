@@ -142,6 +142,47 @@ public class Banco {
 		prepStmt.close();
 		return emp;
 	}
+
+	
+	public static List<Empregado> listarEmpregadosAtivos() throws Exception {
+		List<Empregado> lista = new ArrayList<Empregado>();
+		Connection conn = Banco.getConexao();
+		String sql = "SELECT * FROM Empregado WHERE desligamento IS NULL";
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		ResultSet rs = prepStmt.executeQuery();
+		while (rs.next()) {
+			String matricula = rs.getString("matricula");
+			String nome = rs.getString("nome");
+			Date admissao = rs.getDate("admissao");
+			Date desligamento = rs.getDate("desligamento");
+			Double salario = rs.getDouble("salario");
+			Empregado emp = new Empregado(matricula, nome, admissao, desligamento, salario);
+			lista.add(emp);
+		}
+		rs.close();
+		prepStmt.close();
+		return lista;
+	}
+	
+	public static List<Empregado> listarEmpregadosInativos() throws Exception {
+		List<Empregado> lista = new ArrayList<Empregado>();
+		Connection conn = Banco.getConexao();
+		String sql = "SELECT * FROM Empregado WHERE desligamento IS NOT NULL";
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		ResultSet rs = prepStmt.executeQuery();
+		while (rs.next()) {
+			String matricula = rs.getString("matricula");
+			String nome = rs.getString("nome");
+			Date admissao = rs.getDate("admissao");
+			Date desligamento = rs.getDate("desligamento");
+			Double salario = rs.getDouble("salario");
+			Empregado emp = new Empregado(matricula, nome, admissao, desligamento, salario);
+			lista.add(emp);
+		}
+		rs.close();
+		prepStmt.close();
+		return lista;
+	}
 	
 	public static Usuario buscarUsuarioPorMatricula(String matricula) throws SQLException {
 		Usuario usu = null;

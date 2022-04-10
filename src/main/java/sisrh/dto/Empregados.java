@@ -10,9 +10,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Empregados {
+	
 	@XmlElement(name = "empregado")
 	private List<Empregado> empregados = new ArrayList<Empregado>();
+	
 	public List<Empregado> getEmpregados() {
-	return empregados;
+		return empregados;
 	}
 }

@@ -1,14 +1,24 @@
 package sisrh.dto;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Usuario {
 	
-	
+	@XmlElement(name = "nome")
 	private String nome;
 
+	@XmlElement(name = "perfil")
 	private Integer perfil;
 
+	@XmlElement(name = "matricula")
 	private String matricula;
 	
+	@XmlElement(name = "senha")
 	private String senha;
 	
 	public Usuario() {
